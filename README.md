@@ -1,4 +1,8 @@
-REDASH NLP CHATBOT ANALYTICS
+Here's the combined README that starts with the prerequisites, installation, and continues from there:
+
+---
+
+# REDASH NLP CHATBOT ANALYTICS
 
 ## Introduction
 
@@ -10,107 +14,123 @@ The Redash ChatGPT Plugin is an integration that brings natural language convers
 - Interactive Responses: ChatGPT generates human-like responses, providing users with informative and contextual feedback on their queries.
 - Data Visualization: The plugin allows users to visualize query results directly within the chat interface, enabling faster data exploration and analysis.
 
-`The Redash ChatGPT Plugin is an exciting project that aims to integrate natural language conversation capabilities powered by ChatGPT into your Redash dashboard. Although the plugin is still a work in progress, it currently provides functionality for engaging in conversational queries with ChatGPT directly within the Redash interface`
+The Redash ChatGPT Plugin is an exciting project that aims to integrate natural language conversation capabilities powered by ChatGPT into your Redash dashboard. Although the plugin is still a work in progress, it currently provides functionality for engaging in conversational queries with ChatGPT directly within the Redash interface.
 
 ## Requirements Before Installation
 
-Need to install redash instance to your local machine first, follow the below guide to install it
+### Local development setup
 
-- https://github.com/getredash/redash/wiki/Local-development-setup
-- For more reference: Redash - https://redash.io/
+#### Set up the prerequisites
 
-After successful redash instance installation, open the redash source code on your editor and follow the below steps to use the plugin inside your redash dashboard
+Install needed packages:
 
-## Dependencies
-
-```
-  poetry add openai
+```bash
+$ sudo apt -y install docker.io docker-buildx docker-compose-v2
+$ sudo apt -y install build-essential curl docker-compose pwgen python3-venv xvfb
 ```
 
-```
-  yarn add react-icons
-```
+#### Add your user to the "docker" group
 
-```
-  yarn add react-syntax-highlighter
+```bash
+$ sudo usermod -aG docker $USER
 ```
 
-## Installation
+#### Install Node Version Manager
 
-1. Copy the `chat` folder entirely `client/app/components/chat` to the corresponding place in redash's `client/app/components` folder
-2. Copy the `chat.py` file entirely `redash/handlers/chat.py` to the corresponding place in redash's `redash/handlers` folder
-
-Now we finished putting the necessary files for the plugin user interface and flask python code that includes the integration with openai, we now move to how we integrate these two parts inside the redash source code following the below procedure, implement them as stated below
-
-- Go to your redash source code, locate these path `client/app/components/ApplicationArea/ApplicationLayout/index.jsx`
-- copy and paste the following inside the index.jsx
-
-```
-    import ChatBox from "@/components/chat/ChatBox";
+```bash
+$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 ```
 
-- The below code is mostly similar with the existing index.jsx return method the only new thing added is the ChatBox component as shown below so only add that or you can just copy and replace it entirely.
+Now log out of your desktop, then back in again, for the group change to become effective and nvm to be available.
 
-```
-   return (
-       <React.Fragment>
-         <DynamicComponent name="ApplicationWrapper">
-           <div className="application-layout-side-menu">
-             <DynamicComponent name="ApplicationDesktopNavbar">
-               <DesktopNavbar />
-             </DynamicComponent>
-           </div>
-           <div>
-             <DynamicComponent name="ApplicationDesktopChat">
-               <ChatBox/>
-             </DynamicComponent>
-           </div>
-           <div className="application-layout-content">
-             <nav className="application-layout-top-menu" ref={mobileNavbarContainerRef}>
-               <DynamicComponent name="ApplicationMobileNavbar" getPopupContainer={getMobileNavbarPopupContainer}>
-                 <MobileNavbar getPopupContainer={getMobileNavbarPopupContainer} />
-               </DynamicComponent>
-             </nav>
-             {children}
-           </div>
-         </DynamicComponent>
-       </React.Fragment>
-     );
+#### Install NodeJS version 16
+
+Yes, it's End Of Life. But we need to use version 16 for now until we've updated some other stuff.
+
+```bash
+$ nvm install --lts 16
+$ nvm alias default 16
+$ nvm use 16
 ```
 
-- Go to your redash source code, locate these path `client/app/services`, create a file name chat.js and copy the below code
+Confirm version 16 of NodeJS is active:
 
-```
-   import { axios } from "@/services/axios";
-
-   const Chat = {
-     openai: data => axios.post('api/chat', data),
-   };
-
-   export default Chat;
+```bash
+$ nvm list
 ```
 
-- Go to your redash source code, locate these path `redash/handlers/api.py`, inside the api.py file copy and add the following line of codes
+#### Install Yarn 1.x
 
-```
-   from redash.handlers.chat import (
-       ChatResource
-   )
+```bash
+$ npm install --global yarn@1.22.19
 ```
 
-find `api = ApiExt()`, these line of code inside the api.py and after it copy and add the below
+#### Clone the Redash source code and install the NodeJS dependencies
 
-```
-   api.add_org_resource(ChatResource, "/api/chat", endpoint="chat")
-```
-
-- _final step_ Inside your .env file add your openai api key, with the name indicated below
-
-**Get your free openai key** - https://platform.openai.com/
-
-```
-  OPENAI_API_KEY=*****************************************
+```bash
+$ git clone https://github.com/birehan/Redash-NLP-Chatbot-Analytics
+$ cd redash
+$ yarn
 ```
 
-😉 **NICE WORK!!!
-Now rebuild your instance and get ready to engage in insightful conversations with AI directly within your Redash dashboard**
+#### Generate your local environment variables file
+
+Generate the .env file containing (required) environment variables, suitable for development builds:
+
+```bash
+$ make env
+```
+- _Final step_ Inside your `.env` file, add your OpenAI API key, with the name indicated below:
+
+**Get your free OpenAI key** - https://platform.openai.com/
+
+```bash
+OPENAI_API_KEY=*****************************************
+```
+#### Compile and build
+
+Redash uses GNU Make to run things, so if you're not sure about something it's often a good idea to take a look over the Makefile which can help.
+
+#### Build the Redash front end
+
+```bash
+$ make build
+```
+
+#### Build local Redash Docker image
+
+```bash
+$ make compose_build
+```
+
+On my desktop (Ryzen 5600X) that took about 12 minutes to complete the first time. After that though, it's much faster at about a minute and a half each time.
+
+It's a good idea to check that the docker images were built ok. We do that by telling docker to show us the local "docker images", which should include these three new ones. It's important the "created" time shows them to be very recent... if it's not, then they're old images left over from something else.
+
+```bash
+$ docker image list
+```
+
+#### Start Redash locally, using the docker images you just built
+
+```bash
+$ make create_database
+$ make up
+```
+
+The docker compose ps command should show all of the docker pieces are running:
+
+```bash
+$ docker compose ps
+```
+
+The Redash web interface should also be available at http://localhost:5001, ready to be configured.
+
+Once you've finished confirming everything works the way you want, then shut down the containers with:
+
+```bash
+$ make down
+```
+---
+
+I've combined the relevant information from both parts, and you can continue from where you left off. Let me know if you need further assistance or modifications.
