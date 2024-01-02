@@ -1,4 +1,3 @@
-Here's the combined README that starts with the prerequisites, installation, and continues from there:
 
 ---
 
@@ -116,12 +115,6 @@ $ docker image list
 ```bash
 $ make create_database
 $ make up
-```
-
-The docker compose ps command should show all of the docker pieces are running:
-
-```bash
-$ docker compose ps
 ```
 
 The Redash web interface should also be available at http://localhost:5001, ready to be configured.
