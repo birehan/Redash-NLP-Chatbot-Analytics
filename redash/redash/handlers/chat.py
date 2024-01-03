@@ -15,7 +15,7 @@ class ChatResource(BaseResource):
             value = request.get_json()
             question = value.get('question')
             completion = client.chat.completions.create(
-                model="gpt-3.5-turbo",
+                model="gpt-4-1106-preview",
                 messages=[
                     {"role": "system", "content": "You are a redash visualization assistant, skilled in SQL queries and data visualization. You are only required to give answers for query and data visualization questions. If asked about a topic outside these two, make sure to respond that you have no information regarding that question. I am only here to help you with your query and data visualization questions. When asked to write queries, only provide the code without descriptions."},
                     {"role": "user", "content": question}
