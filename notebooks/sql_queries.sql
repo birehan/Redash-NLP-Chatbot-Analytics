@@ -1,131 +1,131 @@
 
             CREATE TABLE IF NOT EXISTS device_type_chart_data (
-                "Date" TEXT, "Device type" TEXT, "Views" INTEGER,
-                PRIMARY KEY ("Date", "Device type")
+                "date" TEXT, "device_type" TEXT, "views" INTEGER,
+                PRIMARY KEY ("date")
             );
         
             CREATE TABLE IF NOT EXISTS device_type_table_data (
-                "Device type" TEXT, "Views" INTEGER, "Watch time (hours)" DOUBLE PRECISION, "Average view duration" TEXT,
-                PRIMARY KEY ("Device type")
+                "device_type" TEXT, "views" INTEGER, "watch_time_hours" DOUBLE PRECISION, "average_view_duration" TEXT,
+                PRIMARY KEY ("device_type")
             );
         
             CREATE TABLE IF NOT EXISTS subscription_source_chart_data (
-                "Date" TEXT, "Subscription source" TEXT, "Subscribers" INTEGER,
-                PRIMARY KEY ("Date", "Subscription source")
+                "date" TEXT, "subscription_source" TEXT, "subscribers" INTEGER,
+                PRIMARY KEY ("date")
             );
         
             CREATE TABLE IF NOT EXISTS subscription_source_table_data (
-                "Subscription source" TEXT, "Subscribers" INTEGER, "Subscribers gained" INTEGER, "Subscribers lost" INTEGER,
-                PRIMARY KEY ("Subscription source")
+                "subscription_source" TEXT, "subscribers" INTEGER, "subscribers_gained" INTEGER, "subscribers_lost" INTEGER,
+                PRIMARY KEY ("subscription_source")
             );
         
             CREATE TABLE IF NOT EXISTS viewership_by_date_table_data (
-                "Date" TEXT, "Views" DOUBLE PRECISION, "Watch time (hours)" DOUBLE PRECISION, "Average view duration" TEXT,
-                PRIMARY KEY ("Date")
+                "date" TEXT, "views" DOUBLE PRECISION, "watch_time_hours" DOUBLE PRECISION, "average_view_duration" TEXT,
+                PRIMARY KEY ("date")
             );
         
             CREATE TABLE IF NOT EXISTS viewer_gender_table_data (
-                "Viewer gender" TEXT, "Views (%)" DOUBLE PRECISION, "Average view duration" TEXT, "Average percentage viewed (%)" DOUBLE PRECISION, "Watch time (hours) (%)" DOUBLE PRECISION,
-                PRIMARY KEY ("Viewer gender")
+                "viewer_gender" TEXT, "views_%" DOUBLE PRECISION, "average_view_duration" TEXT, "average_percentage_viewed_%" DOUBLE PRECISION, "watch_time_hours_%" DOUBLE PRECISION,
+                PRIMARY KEY ("viewer_gender")
             );
         
             CREATE TABLE IF NOT EXISTS traffic_source_chart_data (
-                "Date" TEXT, "Traffic source" TEXT, "Views" INTEGER,
-                PRIMARY KEY ("Date", "Traffic source")
+                "date" TEXT, "traffic_source" TEXT, "views" INTEGER,
+                PRIMARY KEY ("date")
             );
         
             CREATE TABLE IF NOT EXISTS traffic_source_table_data (
-                "Traffic source" TEXT, "Views" DOUBLE PRECISION, "Watch time (hours)" DOUBLE PRECISION, "Average view duration" TEXT, "Impressions" DOUBLE PRECISION, "Impressions click-through rate (%)" DOUBLE PRECISION,
-                PRIMARY KEY ("Traffic source")
+                "traffic_source" TEXT, "views" DOUBLE PRECISION, "watch_time_hours" DOUBLE PRECISION, "average_view_duration" TEXT, "impressions" DOUBLE PRECISION, "impressions_click-through_rate_%" DOUBLE PRECISION,
+                PRIMARY KEY ("traffic_source")
             );
         
             CREATE TABLE IF NOT EXISTS subtitles_and_cc_chart_data (
-                "Date" TEXT, "Subtitles and CC" TEXT, "Views" INTEGER,
-                PRIMARY KEY ("Date", "Subtitles and CC")
+                "date" TEXT, "subtitles_and_cc" TEXT, "views" INTEGER,
+                PRIMARY KEY ("date")
             );
         
             CREATE TABLE IF NOT EXISTS subtitles_and_cc_table_data (
-                "Subtitles and CC" TEXT, "Views" INTEGER, "Watch time (hours)" DOUBLE PRECISION, "Average view duration" TEXT,
-                PRIMARY KEY ("Subtitles and CC")
+                "subtitles_and_cc" TEXT, "views" INTEGER, "watch_time_hours" DOUBLE PRECISION, "average_view_duration" TEXT,
+                PRIMARY KEY ("subtitles_and_cc")
             );
         
             CREATE TABLE IF NOT EXISTS new_and_returning_viewers_chart_data (
-                "Date" TEXT, "New and returning viewers" TEXT, "Views" INTEGER,
-                PRIMARY KEY ("Date", "New and returning viewers")
+                "date" TEXT, "new_and_returning_viewers" TEXT, "views" INTEGER,
+                PRIMARY KEY ("date")
             );
         
             CREATE TABLE IF NOT EXISTS new_and_returning_viewers_table_data (
-                "New and returning viewers" TEXT, "Views" INTEGER, "Watch time (hours)" DOUBLE PRECISION, "Average view duration" TEXT,
-                PRIMARY KEY ("New and returning viewers")
+                "new_and_returning_viewers" TEXT, "views" INTEGER, "watch_time_hours" DOUBLE PRECISION, "average_view_duration" TEXT,
+                PRIMARY KEY ("new_and_returning_viewers")
             );
         
             CREATE TABLE IF NOT EXISTS operating_system_chart_data (
-                "Date" TEXT, "Operating system" TEXT, "Views" INTEGER,
-                PRIMARY KEY ("Date", "Operating system")
+                "date" TEXT, "operating_system" TEXT, "views" INTEGER,
+                PRIMARY KEY ("date")
             );
         
             CREATE TABLE IF NOT EXISTS operating_system_table_data (
-                "Operating system" TEXT, "Views" INTEGER, "Watch time (hours)" DOUBLE PRECISION, "Average view duration" TEXT,
-                PRIMARY KEY ("Operating system")
+                "operating_system" TEXT, "views" INTEGER, "watch_time_hours" DOUBLE PRECISION, "average_view_duration" TEXT,
+                PRIMARY KEY ("operating_system")
             );
         
             CREATE TABLE IF NOT EXISTS cities_chart_data (
-                "Date" TEXT, "Cities" TEXT, "City name" TEXT, "Views" INTEGER,
-                PRIMARY KEY ("Date", "Cities")
+                "date" TEXT, "cities" TEXT, "city_name" TEXT, "views" INTEGER,
+                PRIMARY KEY ("date")
             );
         
             CREATE TABLE IF NOT EXISTS cities_table_data (
-                "Cities" TEXT, "City name" TEXT, "Geography" TEXT, "Geography.1" TEXT, "Views" INTEGER, "Watch time (hours)" DOUBLE PRECISION, "Average view duration" TEXT,
-                PRIMARY KEY ("Cities")
+                "cities" TEXT, "city_name" TEXT, "geography" TEXT, "geography.1" TEXT, "views" INTEGER, "watch_time_hours" DOUBLE PRECISION, "average_view_duration" TEXT,
+                PRIMARY KEY ("cities")
             );
         
             CREATE TABLE IF NOT EXISTS viewer_age_table_data (
-                "Viewer age" TEXT, "Views (%)" DOUBLE PRECISION, "Average view duration" TEXT, "Average percentage viewed (%)" DOUBLE PRECISION, "Watch time (hours) (%)" DOUBLE PRECISION,
-                PRIMARY KEY ("Viewer age")
+                "viewer_age" TEXT, "views_%" DOUBLE PRECISION, "average_view_duration" TEXT, "average_percentage_viewed_%" DOUBLE PRECISION, "watch_time_hours_%" DOUBLE PRECISION,
+                PRIMARY KEY ("viewer_age")
             );
         
             CREATE TABLE IF NOT EXISTS subscription_status_chart_data (
-                "Date" TEXT, "Subscription status" TEXT, "Views" INTEGER,
-                PRIMARY KEY ("Date", "Subscription status")
+                "date" TEXT, "subscription_status" TEXT, "views" INTEGER,
+                PRIMARY KEY ("date")
             );
         
             CREATE TABLE IF NOT EXISTS subscription_status_table_data (
-                "Subscription status" TEXT, "Views" INTEGER, "Watch time (hours)" DOUBLE PRECISION, "Average view duration" TEXT,
-                PRIMARY KEY ("Subscription status")
+                "subscription_status" TEXT, "views" INTEGER, "watch_time_hours" DOUBLE PRECISION, "average_view_duration" TEXT,
+                PRIMARY KEY ("subscription_status")
             );
         
             CREATE TABLE IF NOT EXISTS geography_chart_data (
-                "Date" TEXT, "Geography" TEXT, "Views" INTEGER,
-                PRIMARY KEY ("Date", "Geography")
+                "date" TEXT, "geography" TEXT, "views" INTEGER,
+                PRIMARY KEY ("date")
             );
         
             CREATE TABLE IF NOT EXISTS geography_table_data (
-                "Geography" TEXT, "Views" INTEGER, "Watch time (hours)" DOUBLE PRECISION, "Average view duration" TEXT,
-                PRIMARY KEY ("Geography")
+                "geography" TEXT, "views" INTEGER, "watch_time_hours" DOUBLE PRECISION, "average_view_duration" TEXT,
+                PRIMARY KEY ("geography")
             );
         
             CREATE TABLE IF NOT EXISTS sharing_service_chart_data (
-                "Date" TEXT, "Sharing service" TEXT, "Shares" INTEGER,
-                PRIMARY KEY ("Date", "Sharing service")
+                "date" TEXT, "sharing_service" TEXT, "shares" INTEGER,
+                PRIMARY KEY ("date")
             );
         
             CREATE TABLE IF NOT EXISTS sharing_service_table_data (
-                "Sharing service" TEXT, "Shares" INTEGER,
-                PRIMARY KEY ("Sharing service")
+                "sharing_service" TEXT, "shares" INTEGER,
+                PRIMARY KEY ("sharing_service")
             );
         
             CREATE TABLE IF NOT EXISTS content_type_chart_data (
-                "Date" TEXT, "Content type" TEXT, "Views" INTEGER,
-                PRIMARY KEY ("Date", "Content type")
+                "date" TEXT, "content_type" TEXT, "views" INTEGER,
+                PRIMARY KEY ("date")
             );
         
             CREATE TABLE IF NOT EXISTS content_type_table_data (
-                "Content type" TEXT, "Views" INTEGER, "Watch time (hours)" DOUBLE PRECISION, "Average view duration" TEXT,
-                PRIMARY KEY ("Content type")
+                "content_type" TEXT, "views" INTEGER, "watch_time_hours" DOUBLE PRECISION, "average_view_duration" TEXT,
+                PRIMARY KEY ("content_type")
             );
         
             CREATE TABLE IF NOT EXISTS totals_table_data (
-                "Date" TEXT, "Views" DOUBLE PRECISION, "Subscribers" DOUBLE PRECISION, "Shares" DOUBLE PRECISION,
-                PRIMARY KEY ("Date")
+                "date" TEXT, "views" DOUBLE PRECISION, "subscribers" DOUBLE PRECISION, "shares" DOUBLE PRECISION,
+                PRIMARY KEY ("date")
             );
         
