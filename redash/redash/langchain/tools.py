@@ -5,7 +5,6 @@ from typing import List, Tuple
 
 from utils import get_postgres_data, get_postgres_df
 
-
 class SQLQuery(BaseModel):
     query: str = Field(description="SQL query to execute")
 

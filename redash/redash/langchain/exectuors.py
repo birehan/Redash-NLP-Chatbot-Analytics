@@ -1,26 +1,26 @@
-from langchain.agents import AgentExecutor
-from agents import get_agent_analyst
+from langchain.chat_models import ChatOpenAI
+from langchain.agents import AgentType, initialize_agent
+from langchain.schema import SystemMessage
 
 from tools import execute_sql,get_table_columns,get_table_column_distr
 
+with open("system_message.txt", "r") as file:
+    system_message = file.read()
+
 
 def get_agent_executor():
-    analyst_agent_executor = AgentExecutor(
-        agent=get_agent_analyst(),
+    agent_kwargs = {
+    "system_message": SystemMessage(content=system_message)
+    }
+
+    analyst_agent_openai = initialize_agent(
+        llm=ChatOpenAI(temperature=0.1, model = 'gpt-4-1106-preview'),
+        agent=AgentType.OPENAI_FUNCTIONS,
         tools=[execute_sql, get_table_columns, get_table_column_distr],
+        agent_kwargs=agent_kwargs,
         verbose=True,
-        max_iterations=10, # early stopping criteria
-        early_stopping_method='generate',
-        # to ask model to generate the final answer after stopping
+        max_iterations=20,
+        early_stopping_method='generate'
     )
 
-    return analyst_agent_executor
-
-
-
-
-
-
-# analyst_agent_executor.invoke(
-#   {"question": "what is the Device type having the highest Average view duration?"}
-# )
+    return analyst_agent_openai
