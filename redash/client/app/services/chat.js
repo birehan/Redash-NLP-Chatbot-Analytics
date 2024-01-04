@@ -1,7 +1,9 @@
-import { axios } from "@/services/axios";
 
-const Chat = {
-  openai: data => axios.post("api/chat", data),
-};
+  import { axios } from "@/services/axios";
 
-export default Chat;
+   const Chat = {
+     openai: data => axios.post('api/chat', data),
+   };
+
+   export default Chat;
+
