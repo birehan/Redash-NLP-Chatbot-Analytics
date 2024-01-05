@@ -62,43 +62,6 @@ def populate_dataframe_to_database(connection_params: dict, df: pd.DataFrame, ta
 
     return None
 
-
-# def create_table_query(df: pd.DataFrame, table_name: str) -> str:
-#     try:
-#         # Dictionary to map column names to PostgreSQL data types
-#         data_type_mapping = {
-#             'int64': 'INTEGER',
-#             'float64': 'DOUBLE PRECISION',
-#             'object': 'TEXT',
-#             # Add more data types as needed
-#         }
-
-#         # Generate column definitions for the CREATE TABLE query
-#         column_definitions = ', '.join([f'{column} {data_type_mapping[str(df[column].dtype)]}' for column in df.columns])
-
-#         # Determine the primary key based on the data types
-#         if df.columns[0] == "Date":
-#             # If the first column is a Date, set primary key as the first and second columns
-#             primary_key_constraint = f'PRIMARY KEY ({df.columns[0]}, {df.columns[1]})'
-#         else:
-#             # Otherwise, set primary key as only the first column
-#             primary_key_constraint = f'PRIMARY KEY ({df.columns[0]})'
-
-#         # Create the full CREATE TABLE query
-#         create_table_query = f'''
-#             CREATE TABLE IF NOT EXISTS {table_name} (
-#                 {column_definitions},
-#                 {primary_key_constraint}
-#             );
-#         '''
-#         return create_table_query
-
-#     except Exception as e:
-#         # Log the error
-#         print(f"Error creating table query: {e}")
-#         return ''
-    
-
 def create_table_query(df: pd.DataFrame, table_name: str) -> str:
     try:
         # Dictionary to map column names to PostgreSQL data types
