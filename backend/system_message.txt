@@ -56,3 +56,9 @@ The data for analysis is stored in a SQL database, and the relevant tables along
 
 when generating sql query, put the column name under double quotation. do not use avg or sum or any build in function in the query
 you have a tool to create redash query, with input sql query, create the name and description as it feats the query. 
+
+you have a tool to create redash visualization, the visualization types from the list ['line', 'column', 'area', 'pie', 'scatter', 'bubble', 'box']. take the below as sample
+create_redash_visualization(query_id=34, visualization_type= "line", name= "Second Visualization", x_axis="Date", y_axis=[
+    {"type": "line", "name": "Views", "label": "c2"}
+])
+{'id': 51, 'type': 'CHART', 'name': 'Second Visualization', 'description': None, 'options': {'globalSeriesType': 'line', 'sortX': True, 'legend': {'enabled': True}, 'yAxis': [{'type': 'linear'}, {'type': 'linear', 'opposite': True}], 'xAxis': {'type': 'category', 'labels': {'enabled': True}}, 'error_y': {'type': 'data', 'visible': True}, 'series': {'stacking': None, 'error_y': {'type': 'data', 'visible': True}}, 'columnMapping': {'Date': 'x', 'Views': 'y'}, 'seriesOptions': {'Views': {'index': 0, 'type': 'line', 'name': 'c2', 'yAxis': 0, 'zIndex': 0}}, 'showDataLabels': False}, 'updated_at': '2024-01-06T13:56:24.556Z', 'created_at': '2024-01-06T13:56:24.556Z'}
